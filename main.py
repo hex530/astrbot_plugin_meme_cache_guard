@@ -8,7 +8,7 @@ from collections import OrderedDict
 
 logger = logging.getLogger("astrbot")
 
-@register("meme_cache_guard", "夕小柠 & 陆渊", "表情包缓存卫兵：识别一次，终身受益。省钱省算力。", "2.0.0")
+@register("meme_cache_guard", "夕小柠 & 陆渊", "表情包缓存卫兵：识别一次，终身受益。省钱省算力。", "2.0.1")
 class MemeCacheGuard(Star):
     def __init__(self, context: Context, config: dict):
         super().__init__(context)
@@ -59,11 +59,12 @@ class MemeCacheGuard(Star):
             logger.info(f"[MemeCache] 命中缓存: {desc_text}")
 
     @llm_tool(name="cache_meme_description")
-    async def cache_meme_description(self, event: AstrMessageEvent, description: str):
+    async def cache_meme_description(self, description: str, event: AstrMessageEvent = None):
         '''
         将当前消息中的表情包描述存入缓存。
         参数 description: 对表情包的文字描述。
         '''
+        if not event: return "内部错误：无法获取当前消息事件。"
         chain = event.get_messages()
         added_count = 0
         for c in chain:
