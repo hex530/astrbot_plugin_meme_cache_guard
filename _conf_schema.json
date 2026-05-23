@@ -1,0 +1,19 @@
+{
+  "cache_limit": {
+    "description": "表情包缓存上限",
+    "type": "int",
+    "default": 500,
+    "hint": "当缓存超过此数量时，将自动移除最旧的记录。"
+  },
+  "admin_qq": {
+    "description": "管理员 QQ",
+    "type": "string",
+    "default": "1591793025"
+  },
+  "auto_recognize": {
+    "description": "是否开启自动识别并缓存",
+    "type": "bool",
+    "default": true,
+    "hint": "开启后，AI 识别完新图会自动存入缓存。"
+  }
+}
